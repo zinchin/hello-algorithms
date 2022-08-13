@@ -103,7 +103,7 @@ abstract class CollectionTests {
 			assertNull(expected2[i]);
 		}
 
-	}
+	} 
 
 	@Test
 	void sizeTest() {
