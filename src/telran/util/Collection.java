@@ -76,5 +76,4 @@ public interface Collection<T> extends Iterable<T> {
 		// reference to the same array will be returned
 		return ar;
 	}
-	
 }

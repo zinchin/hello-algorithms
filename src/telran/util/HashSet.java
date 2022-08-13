@@ -38,19 +38,20 @@ private class HashSetIterator implements Iterator<T> {
 	    
 		boolean flNext=false;
 		   
-		    while(!hasNext() || flNext==true) {
+		    while(!hasNext() || flNext==true || currentBucket<hashTable.length) {
 					
-		    	if (hashTable[currentBucket]!=null || hashTable[currentBucket].size()==0) {
+		    	if (hashTable[currentBucket]==null || hashTable[currentBucket].size()==0) {
 					currentBucket++;
 				}
 		    	else {
 		    		List<T> bucket = hashTable[currentBucket];
 		    		int i=0;
 		    		
-		    		while(i<bucket.size() && flNext==true) {
+		    		while(i<bucket.size() && hasNext()) {
 		    		    if (bucket.get(i)!=null) {
 		    				res=bucket.get(i);
 		    				currentInd++;
+		    				flNext=true;
 		    			}
 		    		    else i++;
 		    		}
