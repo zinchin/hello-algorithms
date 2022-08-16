@@ -65,12 +65,7 @@ private class HashSetIterator implements Iterator<T> {
 
 	@Override
 	public void remove() {
-		if (!hasNext()) {
-			throw new NoSuchElementException();
-		}
-		else {
-			next();
-		}
+	
 	}
 	
 }

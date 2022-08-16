@@ -93,17 +93,16 @@ abstract class CollectionTests {
 
 	@Test
 	void toArrayTest() {
-		Integer expected1[] = { 10, -5, 13, 20, 40, 15 };
-		assertArrayEquals(expected1, collection.toArray(new Integer[0]));
-		assertTrue(expected1 == collection.toArray(expected1));
+		assertArrayEquals(expected, collection.toArray(new Integer[0]));
+		assertTrue(expected == collection.toArray(expected));
 		Integer expected2[] = new Integer[100];
 		assertTrue(expected2 == collection.toArray(expected2));
-		assertArrayEquals(expected1, Arrays.copyOf(expected2, collection.size()));
+		assertArrayEquals(expected, Arrays.copyOf(expected2, collection.size()));
 		for (int i = collection.size(); i < expected2.length; i++) {
 			assertNull(expected2[i]);
 		}
 
-	} 
+	}
 
 	@Test
 	void sizeTest() {
