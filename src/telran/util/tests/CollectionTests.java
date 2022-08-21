@@ -119,7 +119,7 @@ abstract class CollectionTests {
 		wrongRemove(it);
 	}
 
-	@Test
+	//@Test
 	void removeIfPerformanceTest() {
 		Predicate<Integer> predicate = new AllFalsePredicate().negate();
 		for (int i = 0; i < N_RUNS; i++) {

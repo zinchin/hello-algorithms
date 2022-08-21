@@ -254,6 +254,7 @@ public class LinkedList<T> implements List<T> {
 	public void reverse() {
 		//TODO write implementation
 		//TODO write test (Think where there should be test for the method reverse)
+	     //no cycles allowed
 	}
 
 }

@@ -18,6 +18,8 @@ public class TreeSet<T> implements SortedSet<T> {
 		}
 		
 	}
+	private static final String FILL_SYMBOL = " ";
+	private static final int N_SYMBOLS_PER_LEVEL = 2;
 	private Node<T> root;
 	int size;
 	Comparator<T> comp;
@@ -89,8 +91,9 @@ public class TreeSet<T> implements SortedSet<T> {
 	}
 	@Override
 	public boolean add(T obj) {
+	
 		//no cycles allowed
-		Node<T> newNode = new Node<>(obj);
+	Node<T> newNode = new Node<>(obj);
 		boolean res = add(root, newNode);
 		if (res) {
 			size++;
@@ -124,6 +127,7 @@ public class TreeSet<T> implements SortedSet<T> {
 		}
 		return res;
 	}
+	
 	private void insert(Node<T> parent, Node<T> newNode, boolean isLeft) {
 		if (isLeft) {
 			parent.left = newNode;
@@ -261,5 +265,97 @@ public class TreeSet<T> implements SortedSet<T> {
 		}
 		return node;
 	}
+	
+	public void displayRotate() {
+		displayRotated(root,0);
+	}
 
+	private void displayRotated(Node<T> root, int level) {
+		if (root!=null) {
+			displayRotated(root.right, level + 1);
+			displayRoot(root, level);
+			displayRotated(root.left, level + 1);
+		}
+	}
+
+	private void displayRoot(Node<T> root, int level) {
+		System.out.printf("%s%s\n",FILL_SYMBOL.repeat(level*N_SYMBOLS_PER_LEVEL),root.obj);
+		
+	}
+	
+	public void displayAsDirectory() {
+		displayAsDirectory(root,0);
+	}
+	
+	private void displayAsDirectory(Node<T> root, int level) {
+		if (root!=null) {
+			displayRoot(root,level); 
+			displayAsDirectory(root.left,level+1);	
+			displayAsDirectory(root.right,level+1);
+		}
+		
+		
+	}
+
+	public int height() {
+	
+		return height(root);
+	}
+	
+	private int height(Node<T> root) {
+	int res=0;
+		if (root!=null) {
+			int heightLeft = height(root.left);
+			int heightRight= height(root.right);
+			res=Math.max(heightLeft, heightRight)+1;
+		}
+		return res;
+	}
+
+	public int width() {
+		
+		return width(root);
+	}
+
+	private int width(Node<T> root) {
+		int res=0;
+		if(root !=null) {
+			res = root.left==null && root.right==null ? 1 : width(root.left) + width(root.right);
+			}
+			
+		return res;
+	}
+	
+	/**
+	 * tree inversion swap of left and right subtrees
+	 */
+ public void inversion() {
+	  inversion(root,0);
+ }
+
+	private void inversion(Node<T> root, int level) {
+		if (root!=null) {
+			displayRoot(root,level);
+			if (root.left!=null || root.right!=null) {
+			swap(root);
+			if (root.left!=null) inversion(root.left,level+1);
+			if (root.right!=null) inversion(root.right,level+1);
+			
+		
+		}
+		}
+	}
+
+	private Node<T> swap(Node<T> root) {
+		if (root!=null) {
+		Node<T> tmp =root.left;
+		root.left=root.right;
+		root.right=tmp;
+		
+		}
+		return root;
+	}
+
+
+	
 }
